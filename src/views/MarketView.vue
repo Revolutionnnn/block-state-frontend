@@ -1,44 +1,51 @@
 <template>
-    <q-page class="q-pa-md">
-        <h4 class="text-center">Inmuebles disponibles</h4>
-      <div class="q-gutter-md" style="display: flex; flex-wrap: wrap; justify-content: start;">
-        <q-card v-for="nft in nfts" :key="nft.id" class="my-card">
-          <q-img :src="nft.image" :alt="nft.title" />
-          <q-card-section>
-            <div class="text-h6">{{ nft.title }}'</div>
-            <div class="text-subtitle2">{{ nft.description }}</div>
-          </q-card-section>
-          <q-card-actions align="right">
-            <q-btn flat label="Ver más" color="primary" @click="viewDetails(nft.id)" />
-          </q-card-actions>
-        </q-card>
-      </div>
-    </q-page>
-  </template>
+  <q-page class="q-pa-md">
+      <h4 class="text-center">Inmuebles disponibles</h4>
+    <div class="q-gutter-md" style="display: flex; flex-wrap: wrap; justify-content: start;">
+      <q-card v-for="property in properties" :key="property.id" class="my-card">
+        <q-img :src="property.image || defaultImage" :alt="property.name" />
+        <q-card-section>
+          <div class="text-h6">{{ property.name }}</div> 
+          <div class="text-subtitle2">{{ property.description }}</div>
+        </q-card-section>
+        <q-card-actions align="right">
+          <q-btn flat label="Ver más" color="primary" @click="viewDetails(property.id)" />
+        </q-card-actions>
+      </q-card>
+    </div>
+  </q-page>
+</template>
+
   
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted } from 'vue';
+import axios from 'axios';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
 
-const nfts = ref([
-          {
-            id: 1,
-            title: 'NFT #1',
-            description: 'Descripción del NFT #1',
-            image: 'https://via.placeholder.com/150',
-          },
-          {
-            id: 2,
-            title: 'NFT #2',
-            description: 'Descripción del NFT #2',
-            image: 'https://via.placeholder.com/150',
-          },
-        ])
+const defaultImage = 'https://via.placeholder.com/800x600?text=Inmueble+NFT';
 
-function viewDetails(nftId) {
-    router.push({ name: 'nftDetails', params: { id: nftId } });
+const properties = ref([]);
+
+const loadProperties = async () => {
+  try {
+    const response = await axios.get('http://localhost:8000/properties');
+    properties.value = response.data.map(property => ({
+      ...property,
+      image: property.image || defaultImage
+    }));
+  } catch (error) {
+    console.error('Error cargando las propiedades:', error);
+  }
+};
+
+onMounted(() => {
+  loadProperties();
+});
+
+function viewDetails(property) {
+    router.push({ name: 'nftDetails', params: { id: property } });
   }
 </script>
   
