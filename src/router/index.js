@@ -10,12 +10,23 @@ const routes = [
   {
     path: '/about',
     name: 'about',
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    component: () => import('../views/AboutView.vue')
   },
   {
     path: '/mint',
     name: 'mint',
     component: () => import('../views/MintNFT.vue')
+  },
+  {
+    path: '/market',
+    name: 'market',
+    component: () => import('../views/MarketView.vue')
+  },
+  {
+    path: '/nft/:id',
+    name: 'nftDetails',
+    component: () => import('../views/NftDetailsView.vue'),
+    props: true
   }
 ]
 

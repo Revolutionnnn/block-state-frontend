@@ -1,5 +1,6 @@
 <template>
     <q-page padding>
+        <h4 class="text-center">Mint NFT Inmobiliario</h4>
       <q-form @submit.prevent="onSubmit" class="q-gutter-md">
         <div class="q-gutter-md q-mb-md">
           <q-input filled v-model="form.name" label="Name" />
@@ -55,6 +56,7 @@
   </template>
 <script setup>
 import { ref } from 'vue';
+import swal from 'sweetalert';
 
 const form = ref({
   name: null,
@@ -72,6 +74,7 @@ const form = ref({
 });
 
 const onSubmit = () => {
+  swal("Good job!", "Haz minteado tu NFT!", "success");
   console.log('Form Data:', form.value);
 };
 
