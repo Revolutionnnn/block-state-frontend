@@ -35,7 +35,7 @@
     >
       <q-list>
         <q-item-label header>Home</q-item-label>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
+        <q-item clickable tag="a" href="/">
           <q-item-section avatar>
             <q-icon name="school" />
           </q-item-section>
@@ -44,12 +44,21 @@
             <q-item-label caption>Pagina principal</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://github.com/quasarframework/">
+        <q-item clickable tag="a" href="/mint">
           <q-item-section avatar>
             <q-icon name="code" />
           </q-item-section>
           <q-item-section>
             <q-item-label>Mint NFT</q-item-label>
+            <q-item-label caption>Crea el NFT Inmobialirio</q-item-label>
+          </q-item-section>
+        </q-item>
+        <q-item clickable tag="a" href="/mint">
+          <q-item-section avatar>
+            <q-icon name="house" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Ver NFTS</q-item-label>
             <q-item-label caption>Crea el NFT Inmobialirio</q-item-label>
           </q-item-section>
         </q-item>
