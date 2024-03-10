@@ -16,14 +16,8 @@
         <q-carousel-slide :name="2" img-src="../assets/quees.jpg" />
       </q-carousel>
     </div>
-    <q-img
-    src="../assets/funciones.jpg"
-    basic
-    style="max-width: 100%; height: auto;"
-    class="rounded-borders"
-  />
   <q-img
-    src="../assets/metricas.jpg"
+    src="../assets/funcionalidad.jpeg"
     basic
     style="max-width: 100%; height: auto;"
     class="rounded-borders"

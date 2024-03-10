@@ -15,7 +15,8 @@ const routes = [
   {
     path: '/mint',
     name: 'mint',
-    component: () => import('../views/MintNFT.vue')
+    component: () => import('../views/MintNFT.vue'),
+    props: true
   },
   {
     path: '/market',
