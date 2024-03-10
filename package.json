@@ -11,6 +11,7 @@
     "@quasar/extras": "^1.0.0",
     "core-js": "^3.8.3",
     "ethers": "^6.11.1",
+    "nft.storage": "^7.1.1",
     "quasar": "^2.0.0",
     "sweetalert": "^2.1.2",
     "vue": "^3.2.13",

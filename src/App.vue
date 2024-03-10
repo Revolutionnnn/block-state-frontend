@@ -105,17 +105,19 @@ import { ethers } from "ethers";
 const leftDrawerOpen = ref(false)
 const signer = ref(null)
 const walletConnected = ref(false)
+walletConnected.value = localStorage.getItem('signer') ? true : false
 
 let provider;
 async function connectWallet () {
   if (window.ethereum == null) {
     console.log("MetaMask not installed; using read-only defaults")
     provider = ethers.getDefaultProvider()
-    walletConnected.value = true
+    walletConnected.value = false
   } else {
       provider = new ethers.BrowserProvider(window.ethereum)
       signer.value = await provider.getSigner();
-      walletConnected.value = false
+      localStorage.setItem('signer', JSON.stringify(signer.value))
+      walletConnected.value = true
   }
 }
 </script>
