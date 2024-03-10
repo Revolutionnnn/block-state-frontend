@@ -59,11 +59,13 @@
     </q-page>
   </template>
 <script setup>
-import { ref } from 'vue';
 import { NFTStorage } from 'nft.storage'
 import { ethers } from "ethers";
 import abi from '../abi/abi.json'
 
+import { ref, onMounted } from 'vue';
+import swal from 'sweetalert';
+import axios from 'axios';
 import { useRouter, useRoute } from 'vue-router';
 
 const router = useRouter();
