@@ -12,10 +12,18 @@
         />
 
         <q-toolbar-title>
-          Block State
+          <div class="q-mr-md" style="display: flex; align-items: center;">
+            <img src="./assets/logo.png" alt="Logo" style="height: 40px; width: auto; margin-right: 8px;">
+            Block State
+          </div>
         </q-toolbar-title>
 
-        <div>V 0.0.1</div>
+        <q-btn
+          color="#F62C07"
+          @click="connectWallet"
+          :label="walletConnected ? 'Wallet Conectada' : 'Conectar Wallet'"
+          class="q-ml-md"
+        />
       </q-toolbar>
     </q-header>
 
@@ -26,14 +34,14 @@
       class="bg-grey-2"
     >
       <q-list>
-        <q-item-label header>Essential Links</q-item-label>
+        <q-item-label header>Home</q-item-label>
         <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
           <q-item-section avatar>
             <q-icon name="school" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Docs</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
+            <q-item-label>Home</q-item-label>
+            <q-item-label caption>Pagina principal</q-item-label>
           </q-item-section>
         </q-item>
         <q-item clickable tag="a" target="_blank" href="https://github.com/quasarframework/">
@@ -41,8 +49,8 @@
             <q-icon name="code" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Github</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
+            <q-item-label>Mint NFT</q-item-label>
+            <q-item-label caption>Crea el NFT Inmobialirio</q-item-label>
           </q-item-section>
         </q-item>
         <q-item clickable tag="a" target="_blank" href="https://chat.quasar.dev">
@@ -50,8 +58,8 @@
             <q-icon name="chat" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Discord Chat Channel</q-item-label>
-            <q-item-label caption>chat.quasar.dev</q-item-label>
+            <q-item-label>Telegram</q-item-label>
+            <q-item-label caption>Grupo de negocios</q-item-label>
           </q-item-section>
         </q-item>
         <q-item clickable tag="a" target="_blank" href="https://forum.quasar.dev">
@@ -60,7 +68,7 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Forum</q-item-label>
-            <q-item-label caption>forum.quasar.dev</q-item-label>
+            <q-item-label caption>Forum de negocios</q-item-label>
           </q-item-section>
         </q-item>
         <q-item clickable tag="a" target="_blank" href="https://twitter.com/quasarframework">
@@ -69,7 +77,7 @@
           </q-item-section>
           <q-item-section>
             <q-item-label>Twitter</q-item-label>
-            <q-item-label caption>@quasarframework</q-item-label>
+            <q-item-label caption>@blockstate</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
@@ -81,17 +89,24 @@
   </q-layout>
 </template>
 
-<script>
+<script setup>
 import { ref } from 'vue'
+import { ethers } from "ethers";
 
-export default {
-  name: 'LayoutDefault',
+const leftDrawerOpen = ref(false)
+const signer = ref(null)
+const walletConnected = ref(false)
 
-
-  setup () {
-    return {
-      leftDrawerOpen: ref(false)
-    }
+let provider;
+async function connectWallet () {
+  if (window.ethereum == null) {
+    console.log("MetaMask not installed; using read-only defaults")
+    provider = ethers.getDefaultProvider()
+    walletConnected.value = true
+  } else {
+      provider = new ethers.BrowserProvider(window.ethereum)
+      signer.value = await provider.getSigner();
+      walletConnected.value = false
   }
 }
 </script>

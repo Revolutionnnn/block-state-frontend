@@ -18,21 +18,18 @@
     </div>
     <q-img
     src="../assets/funciones.jpg"
-    :alt="altText"
     basic
     style="max-width: 100%; height: auto;"
     class="rounded-borders"
   />
   <q-img
     src="../assets/metricas.jpg"
-    :alt="altText"
     basic
     style="max-width: 100%; height: auto;"
     class="rounded-borders"
   />
   <q-img
     src="../assets/equipo.jpg"
-    :alt="altText"
     basic
     style="max-width: 100%; height: auto;"
     class="rounded-borders"
