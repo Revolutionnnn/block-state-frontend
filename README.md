@@ -1,4 +1,7 @@
-# mi-proyecto-vue2
+# mi-proyecto-vue
+
+## Para utilizar este proyecto utiliza como dependencia de backend
+https://github.com/Revolutionnnn/block-state-backend
 
 ## Project setup
 ```
